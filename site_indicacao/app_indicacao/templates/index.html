@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load widget_tweaks %}
+<section class="container-fluid">   
+    <div class="container col-md-5">
+        <div class="p-3 mb-2 bg-primary text-black">
+            <form action="{% url 'enviar' %}" method="post">
+                {% csrf_token %}
+                {% for field in leads.visible_fields %}
+                <div class="form-floating mb-3">
+                    {{field|add_class:'form-control'|attr:"id:floatingInput"|attr:"placeholder=name@example.com"}}
+                    <label for="floatingInput">{{ field.label }}</label>
+                </div>
+                {% endfor %}
+                
+                <input type="submit" value="OK" class="btn btn-success">
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
